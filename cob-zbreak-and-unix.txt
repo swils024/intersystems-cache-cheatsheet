@@ -1,0 +1,24 @@
+Remove blank lines from trace file
+sed '/^$/d' file.log > noblanklines.log  
+
+Null a trace file
+>yourfile.log 
+
+Track the end of a log file as it changes (use a separate terminal window)
+tail -f yourfile.log 
+
+Track currently executing line of code (very verbose,useful for stand-alone routines) 
+ZBREAK /TRACE:ALL:"yourfiledestination/file.log"
+   
+Track only my defined watchpoints 
+ZBREAK /TRACE:ON:"yourfiledestination/file.log" 
+
+Define watchpoint with trace only option
+ZBREAK *DAY:"T"
+ZBREAK *ID:"T"
+
+Write full local array to trace file when a value changes 
+ZBREAK *RESULTS:"T"::"ZWRITE RESULTS" 
+
+Only break out when this condition DAY=64581 is met and execute "ZWRITE DAY"
+ZBREAK *DAY:"B":"DAY=64581":"ZWRITE DAY"
